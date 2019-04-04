@@ -112,10 +112,20 @@ class App extends Component {
       );
       style.backgroundColor = 'red';
     }
+
+    const classes = [];
+
+    if (this.state.people.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.people.length <= 1) {
+      classes.push('uppercase');
+    }
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <h2>Vikas Kumar</h2>
+        <h2 className={classes.join(' ')}>This is so reactive :)</h2>
         <button style={style} onClick={this.togglePeopleHandler}>
           Toggle people
         </button>

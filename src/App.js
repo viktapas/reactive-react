@@ -21,7 +21,8 @@ class App extends Component {
         name: 'Upasana',
         age: 1
       }
-    ]
+    ],
+    showPeople: false
   };
   switchNameHandler = newName => {
     // console.log('Was clicked!');
@@ -71,6 +72,10 @@ class App extends Component {
     });
   };
 
+  togglePeopleHandler = () => {
+    this.setState({ showPeople: !this.state.showPeople });
+  };
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -83,29 +88,33 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <h2>Vikas Kumar</h2>
-        <button
-          style={style}
-          onClick={this.switchNameHandler.bind(this, 'RAVAN')}
-        >
-          Switch Name
+        <button style={style} onClick={this.togglePeopleHandler}>
+          Toggle people
         </button>
-        <Person
-          name={this.state.people[0].name}
-          age={this.state.people[0].age}
-          changed={this.nameChangedHandler}
-        />
-        <Person
-          name={this.state.people[1].name}
-          age={this.state.people[1].age}
-          click={this.switchNameHandler.bind(this, 'RAVAN!!!')}
-        />
-        <Person name={this.state.people[2].name} age={this.state.people[2].age}>
-          My hobbies: Racing
-        </Person>
-        <Person
-          name={this.state.people[3].name}
-          age={this.state.people[3].age}
-        />
+        {this.state.showPeople ? (
+          <div>
+            <Person
+              name={this.state.people[0].name}
+              age={this.state.people[0].age}
+              changed={this.nameChangedHandler}
+            />
+            <Person
+              name={this.state.people[1].name}
+              age={this.state.people[1].age}
+              click={this.switchNameHandler.bind(this, 'RAVAN!!!')}
+            />
+            <Person
+              name={this.state.people[2].name}
+              age={this.state.people[2].age}
+            >
+              My hobbies: Racing
+            </Person>
+            <Person
+              name={this.state.people[3].name}
+              age={this.state.people[3].age}
+            />
+          </div>
+        ) : null}
       </div>
     );
     // return React.createElement(

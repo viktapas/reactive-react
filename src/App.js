@@ -84,6 +84,33 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     };
+    let people = null;
+    if (this.state.showPeople) {
+      people = (
+        <div>
+          <Person
+            name={this.state.people[0].name}
+            age={this.state.people[0].age}
+            changed={this.nameChangedHandler}
+          />
+          <Person
+            name={this.state.people[1].name}
+            age={this.state.people[1].age}
+            click={this.switchNameHandler.bind(this, 'RAVAN!!!')}
+          />
+          <Person
+            name={this.state.people[2].name}
+            age={this.state.people[2].age}
+          >
+            My hobbies: Racing
+          </Person>
+          <Person
+            name={this.state.people[3].name}
+            age={this.state.people[3].age}
+          />
+        </div>
+      );
+    }
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
@@ -91,30 +118,7 @@ class App extends Component {
         <button style={style} onClick={this.togglePeopleHandler}>
           Toggle people
         </button>
-        {this.state.showPeople ? (
-          <div>
-            <Person
-              name={this.state.people[0].name}
-              age={this.state.people[0].age}
-              changed={this.nameChangedHandler}
-            />
-            <Person
-              name={this.state.people[1].name}
-              age={this.state.people[1].age}
-              click={this.switchNameHandler.bind(this, 'RAVAN!!!')}
-            />
-            <Person
-              name={this.state.people[2].name}
-              age={this.state.people[2].age}
-            >
-              My hobbies: Racing
-            </Person>
-            <Person
-              name={this.state.people[3].name}
-              age={this.state.people[3].age}
-            />
-          </div>
-        ) : null}
+        {people}
       </div>
     );
     // return React.createElement(

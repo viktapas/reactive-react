@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-import Person from './Person/Person';
-
+import styles from './App.module.css';
+import People from '../components/People/People';
+import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
   state = {
     people: [
@@ -70,12 +70,6 @@ class App extends Component {
   };
 
   deletePersonHandler = personIndex => {
-    // // getting refrence (pointer)
-    // const _people = this.state.people;
-    // // mutating
-    // _people.splice(personIndex, 1);
-    // this.setState({ people: _people });
-
     // create copy of object
     const _people = this.state.people.slice();
     _people.splice(personIndex, 1);
@@ -83,56 +77,24 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
     let people = null;
     if (this.state.showPeople) {
       people = (
-        <div>
-          {this.state.people.map((person, index) => {
-            return (
-              <Person
-                key={person.id}
-                name={person.name}
-                age={person.age}
-                changed={event => {
-                  this.nameChangedHandler(event, person.id);
-                }}
-                delete={() => this.deletePersonHandler(index)}
-              />
-            );
-          })}
-        </div>
+        <People
+          people={this.state.people}
+          delete={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
       );
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      };
     }
-
-    const classes = [];
-
-    if (this.state.people.length <= 2) {
-      classes.push('red');
-    }
-    if (this.state.people.length <= 1) {
-      classes.push('uppercase');
-    }
-
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
-        <h2 className={classes.join(' ')}>This is so reactive :)</h2>
-        <button style={style} onClick={this.togglePeopleHandler}>
-          Toggle people
-        </button>
+      <div className={styles.App}>
+        <Cockpit
+          appTitle={this.props.title}
+          showPeople={this.state.showPeople}
+          people={this.state.people}
+          clicked={this.togglePeopleHandler}
+        />
         {people}
       </div>
     );

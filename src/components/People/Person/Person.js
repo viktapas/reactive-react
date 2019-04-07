@@ -1,9 +1,9 @@
 import React from 'react';
-import './Person.scss';
-
+import styles from './Person.module.scss';
+console.log(styles);
 const person = props => {
   return (
-    <div className="Person">
+    <div className={styles.Person}>
       <p onClick={props.delete}>
         I'm {props.name} and I am {props.age} years old!
       </p>

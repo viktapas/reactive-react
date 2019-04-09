@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './cockpit.module.scss';
+import Aux from '../../hoc/Aux';
 
 const cockpit = props => {
   let btnClass = '';
@@ -15,14 +16,13 @@ const cockpit = props => {
     classes.push(styles.uppercase);
   }
   return (
-    <div className={styles.Cockpit}>
-      {/* <h1>Hi, I'm a React App</h1> */}
+    <Aux>
       <h1>{props.appTitle}</h1>
       <h2 className={classes.join(' ')}>This is so reactive</h2>
       <button className={btnClass} onClick={props.clicked}>
         Toggle people
       </button>
-    </div>
+    </Aux>
   );
 };
 

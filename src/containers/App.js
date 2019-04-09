@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styles from './App.module.css';
 import People from '../components/People/People';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
 class App extends Component {
   state = {
     people: [
@@ -88,7 +89,7 @@ class App extends Component {
       );
     }
     return (
-      <div className={styles.App}>
+      <WithClass classes={styles.App}>
         <Cockpit
           appTitle={this.props.title}
           showPeople={this.state.showPeople}
@@ -96,7 +97,7 @@ class App extends Component {
           clicked={this.togglePeopleHandler}
         />
         {people}
-      </div>
+      </WithClass>
     );
     // return React.createElement(
     //   'div',
